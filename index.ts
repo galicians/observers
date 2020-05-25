@@ -1,7 +1,5 @@
-import { of, from, interval } from 'rxjs'; 
-import { map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
-
+import { Observable, of, from, interval } from 'rxjs'; 
+import { map, tap, take } from 'rxjs/operators';
 
 const source = of('World').pipe(
   map(x => `Hello ${x}!`)
@@ -37,3 +35,10 @@ from(apples).subscribe(x => console.log(x, typeof x))
 of(...apples).subscribe(x => console.log(x, typeof x))
 
 // const num = interval(1000).subscribe(console.log)
+
+of(2, 4, 6)
+  .pipe(
+    map(item => item * 2),
+    tap(item => console.log(item)),
+    take(2)
+  ).subscribe(console.log)
