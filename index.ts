@@ -1,4 +1,4 @@
-import { of } from 'rxjs'; 
+import { of, from, interval } from 'rxjs'; 
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
@@ -21,3 +21,19 @@ const appleStream = new Observable(appleObserver => {
 });
 
 const sub = appleStream.subscribe(observer)
+
+sub.unsubscribe();
+
+const appleStreamTwo = of('Apple1', 'Apple2');
+
+const appleStreamThree = from(['Apple1', 'Apple2']);
+
+const apples = ['Apple 1', 'Apple 2'];
+
+of(apples).subscribe(x => console.log(x, typeof x))
+
+from(apples).subscribe(x => console.log(x, typeof x))
+
+of(...apples).subscribe(x => console.log(x, typeof x))
+
+// const num = interval(1000).subscribe(console.log)
